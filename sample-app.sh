@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+if [ -d "/tempdir" ]
 mkdir tempdir
 mkdir tempdir/templates
 mkdir tempdir/static
@@ -19,6 +20,7 @@ EXPOSE 5050
 CMD python /home/myapp/sample_app.py
 _EOF_
 
+fi
 cd tempdir || exit
 docker build -t sampleapp .
 docker run -t -d -p 5050:5050 --name samplerunning sampleapp
